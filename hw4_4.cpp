@@ -8,31 +8,82 @@ private:
     int pull_up;
     double jump;
     int sit_up;
+    string name;
 public:
-    void print();
-
+    Record();
+    void print();//ê¸°ë¡ëœ ìë£Œë¥¼ ì¶œë ¥í•˜ëŠ” ê¸°ëŠ¥
+    void cin_record();
+    string ret_name();
+    Record operator+(Record& c);
 
 };
+void Record::print()
+{
+    cout << push_up << "   " << run << "   " << pull_up << "   " << jump << "   " << sit_up << endl;
+}
+Record::Record()
+{
+    name = "";
+    push_up = 0;
+    run = 0.0;
+    pull_up = 0;
+    jump = 0.0;
+    sit_up = 0;
+}
+string Record::ret_name()
+{
+    return name;
+}
+void Record::cin_record()
+{
+    cout << "ì´ë¦„ê³¼ ê¸°ë¡ì„ ì…ë ¥í•˜ì„¸ìš”: ";
+    cin >> name >> push_up >> run >> pull_up >> jump >> sit_up;
+}
+Record Record::operator+(Record& c)
+{
+    Record temp;
+    temp.push_up = this->push_up + c.push_up;
+    temp.run = this->run + c.run;
+    temp.pull_up = this->pull_up + c.pull_up;
+    temp.jump = this->jump + c.jump;
+    temp.sit_up = this->sit_up + c.sit_up;
+
+}
 
 int main() {
+    Record* rec = new Record[100];
+    int cnt = 0;
+    string pnt_name;
     bool check = true;
     int num;
     while (check) {
         cin >> num;
         if (num == 1) {
-            // ÀÌ¸§°ú ±â·Ï ÀÔ·Â ¹Ş±â 
+            rec[cnt].cin_record();
+            cnt++;
         }
         else if (num == 2) {
-            //±â·ÏµÈ ÀÚ·á Ãâ·Â 
+            cout << "ì´ë¦„" << "   " << "íŒ”êµ½í˜€í´ê¸°" << "   " << "í„±ê±¸ì´" << "   " << "ì œìë¦¬ë©€ë¦¬ë›°ê¸°" << "   " << "ìœ—ëª¸ì¼ìœ¼í‚¤ê¸°";
+            cout << endl;
+            for (int i = 0; i < 100; i++)
+            {
+                if (rec[i].ret_name() == "")
+                    break;
+                else
+                    rec[i].print();
+            }
         }
         else if (num == 3) {
-            //Âü°¡ÀÚ ÀÌ¸§À» ÀÔ·Â ¹Ş¾Æ ±× Âü°¡ÀÚ¿¡°Ô ÆĞ³ÎÆ¼ ÁÖ±â 
+            cout << "í˜ë„í‹°ë¥¼ ë°›ì„ ì°¸ê°€ìì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”: ";
+            cin >> pnt_name;
+
         }
         else if (num == 4) {
-            //Á¾¸ñº° Æò±ÕÀ» ³»¼­ Ãâ·ÂÇÏ´Â ±â´É  
+            //ì¢…ëª©ë³„ í‰ê· ì„ ë‚´ì„œ ì¶œë ¥í•˜ëŠ” ê¸°ëŠ¥  
         }
         else if (num == 5) {
-            //ÇÁ·Î±×·¥ Á¾·á ±¸Çö 
+            cout << "í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤" << endl;
+            return 0;
         }
     }
 
